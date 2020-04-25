@@ -9,6 +9,7 @@
     body {
       background-color: black;
       color: white;
+      font-size:5vw;
     }
     
     header {
@@ -16,15 +17,11 @@
     }
 
     footer {
-      font-family: caladia;
       text-align: center;
-      font-size: 5vw;
     }
 
     div.stylish {
       text-align: center;
-      font-family: caladia;
-      font-size: 5vw;
     }
   </style>
   
@@ -37,23 +34,24 @@
     </header>
     
     <div class="stylish">
-    <p>This site is underconstruction and currently a test subject for any kind of web attack.<br>Hack this site if you can.</p>
+    <p>This site is currently underconstruction and owned by Shamimur Rahman</p>
     </div>
     
-    <form action="/action_page.php" data-netlify="true" oninput="x.value=parseInt(a.value)+parseInt(b.value)">
-      0
-       <input type="range" id="a" name="a" value="50">
-      100 +
-      <input type="number" id="b" name="b" value="50">
-      =
-      <output name="x" for="a b"></output>
-      <br><br>
-      <input type="submit">
+    <form action="/action_page.php" data-netlify="true" style="text-align:left;">
+      <fieldset>
+      <legend>Leave your feedback</legend>
+      <label for="fname">Your Name</label><br>
+      <input type="text" id="fname" name="fname" value="Name"><br>
+      <label for="comment">Comment</label><br>
+      <textarea name="comment" style="width:80%; height:15vw;">Write your comment here</textarea><br><br>
+      <input type="submit" value="Send">
+      <input type="reset" value="Clear">
+      </fieldset>
     </form>
     
   <footer>
     <h3>Contact</h3>
-    <p>There's no contact. Good luck with hacking.</p>
+    <p>Email: shamimurrahman19@gmail.com</p>
   </footer>
 </body>
 
