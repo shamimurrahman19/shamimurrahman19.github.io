@@ -24,6 +24,24 @@
     div.stylish {
       text-align: center;
     }
+    
+    input[type=submit] {
+      font-size:3.5vw;
+    }
+
+    input[type=reset] {
+    font-size:3.5vw;
+    }
+    
+    input[type=text] {
+    font-size:3.5vw;
+    }
+    
+    textarea {
+      font-size:3.5vw;
+      width:80%;
+      height:15vw;
+    }
   </style>
   
 </head>
@@ -42,9 +60,10 @@
       <fieldset>
       <legend>Leave your feedback</legend>
       <label for="fname">Your Name</label><br>
-      <input type="text" id="fname" name="fname" value="Name"><br>
-      <label for="comment">Comment</label><br>
-      <textarea name="comment" style="width:80%; height:15vw;">Write your comment here</textarea><br><br>
+      <input type="text" id="fname" name="fname" value="Name"><br/>
+      <label for="comment">Comment</label>
+      </br>
+      <textarea name="comment">Write your comment here</textarea><br/>
       <input type="submit" value="Send">
       <input type="reset" value="Clear">
       </fieldset>
