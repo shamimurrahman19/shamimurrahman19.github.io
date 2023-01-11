@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Mohammad Shamimur Rahman</title>
+    <title>3D Cube (SVG)</title>
     <style>
-      /* Define the size and position of the cube */
-      .cube {
+    /* Define the size and position of the cube */
+    svg {
         width: 200px;
         height: 200px;
         position: absolute;
@@ -12,87 +12,34 @@
         left: 50%;
         margin-top: -100px;
         margin-left: -100px;
-        perspective: 800px; /* Add perspective */
-        transform-style: preserve-3d; /* Enable 3D transforms */
-        transform: rotateX(-20deg) rotateY(-45deg);
-        animation: spin 10s linear infinite;
-      }
-      
-      /* Define the appearance of the cube */
-      .cube figure {
+    }
+
+    /* Define the appearance of the cube's faces */
+    rect {
         position: absolute;
         width: 100%;
         height: 100%;
-        padding: 10px;
-        box-sizing: border-box;
-        transform-style: preserve-3d; /* Enable 3D transforms */
-      }
-      
-      /* Define the appearance of the cube's faces */
-      .cube figure div {
-        position: absolute;
-        width: calc(100% - 20px); /* reduce the width by the total padding */
-        height: calc(100% - 20px); /* reduce the height by the total padding */
-        border: 1px solid #999;
-      }
-      
-      /* Define the color of the front face */
-      .cube .front {
-        background: #F44336;
-        transform: translateZ(100px);
-      }
-      
-      /* Define the color of the back face */
-      .cube .back {
-        background: #9C27B0;
-        transform: rotateY(180deg) translateZ(100px);
-      }
-      
-      /* Define the color of the right face */
-      .cube .right {
-        background: #4CAF50;
-        transform: rotateY(90deg) translateZ(100px);
-      }
-      
-      /* Define the color of the left face */
-      .cube .left {
-        background: #FF9800;
-        transform: rotateY(-90deg) translateZ(100px);
-      }
-      
-      /* Define the color of the top face */
-      .cube .top {
-        background: #2196F3;
-        transform: rotateX(90deg) translateZ(100px);
-      }
-      
-      /* Define the color of the bottom face */
-      .cube .bottom {
-        background: #008CBA;
-        transform: rotateX(-90deg) translateZ(100px);
-      }
-      
-      /*Animation*/
-      @keyframes spin{
-          from{
-              transform: rotateX(-20deg) rotateY(-45deg);
-          }
-          to{
-              transform: rotateX(-20deg) rotateY(315deg);
-          }
-      }
+    }
+
+    /*Animation*/
+    @keyframes spin{
+        from{
+            transform: rotateX(20deg) rotateY(45deg);
+        }
+        to{
+            transform: rotateX(20deg) rotateY(405deg);
+        }
+    }
     </style>
   </head>
   <body>
-    <div class="cube">
-      <figure>
-        <div class="front"></div>
-        <div class="back"></div>
-        <div class="right"></div>
-        <div class="left"></div>
-        <div class="top"></div>
-        <div class="bottom"></div>
-      </figure>
-    </div>
+    <svg viewBox="0 0 200 200"  preserveAspectRatio="xMinYMin" style="animation: spin 10s linear infinite;">
+        <rect x="50" y="50" width="100" height="100" fill="#F44336" transform="translate(50, 50) rotateY(45deg) rotateX(20deg)" />
+        <rect x="50" y="50" width="100" height="100" fill="#9C27B0" transform="translate(50, 50) rotateY(225deg) rotateX(20deg) rotateY(180deg)" />
+        <rect x="50" y="50" width="100" height="100" fill="#4CAF50" transform="translate(50, 50) rotateY(135deg) rotateX(20deg) rotateY(90deg)" />
+        <rect x="50" y="50" width="100" height="100" fill="#FF9800" transform="translate(50, 50) rotateY(315deg) rotateX(20deg) rotateY(-90deg)" />
+        <rect x="50" y="50" width="100" height="100" fill="#2196F3" transform="translate(50, 50) rotateY(45deg) rotateX(110deg) rotateX(90deg)" />
+        <rect x="50" y="50" width="100" height="100" fill="#008CBA" transform="translate(50, 50) rotateY(45deg) rotateX(-70deg) rotateX(-90deg)" />
+    </svg>
   </body>
 </html>
