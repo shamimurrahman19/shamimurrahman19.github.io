@@ -1,45 +1,84 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>3D Cube (SVG)</title>
+    <title>3D Cube</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r120/three.min.js"></script>
     <style>
-    /* Define the size and position of the cube */
-    svg {
-        width: 200px;
-        height: 200px;
-        position: absolute;
-        top: 50%;
-        left: 50%;
-        margin-top: -100px;
-        margin-left: -100px;
-    }
-
-    /* Define the appearance of the cube's faces */
-    rect {
-        position: absolute;
-        width: 100%;
-        height: 100%;
-    }
-
-    /*Animation*/
-    @keyframes spin{
-        from{
-            transform: rotateX(20deg) rotateY(45deg);
+        body {
+            margin: 0;
+            overflow: hidden;
         }
-        to{
-            transform: rotateX(20deg) rotateY(405deg);
-        }
-    }
     </style>
   </head>
   <body>
-    <svg viewBox="0 0 200 200"  preserveAspectRatio="xMinYMin" style="animation: spin 10s linear infinite;">
-        <rect x="50" y="50" width="100" height="100" fill="#F44336" transform="translate(50, 50) rotateY(45deg) rotateX(20deg)" />
-        <rect x="50" y="50" width="100" height="100" fill="#9C27B0" transform="translate(50, 50) rotateY(225deg) rotateX(20deg) rotateY(180deg)" />
-        <rect x="50" y="50" width="100" height="100" fill="#4CAF50" transform="translate(50, 50) rotateY(135deg) rotateX(20deg) rotateY(90deg)" />
-        <rect x="50" y="50" width="100" height="100" fill="#FF9800" transform="translate(50, 50) rotateY(315deg) rotateX(20deg) rotateY(-90deg)" />
-        <rect x="50" y="50" width="100" height="100" fill="#2196F3" transform="translate(50, 50) rotateY(45deg) rotateX(110deg) rotateX(90deg)" />
-        <rect x="50" y="50" width="100" height="100" fill="#008CBA" transform="translate(50, 50) rotateY(45deg) rotateX(-70deg) rotateX(-90deg)" />
-    </svg>
-  </body>
+    <script>
+        var scene = new THREE.Scene();
+        var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
+        var renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
+
+        var cube = new THREE.Object3D();
+        scene.add(cube);
+
+        //create front face
+        var frontGeometry = new THREE.BoxGeometry(1, 1, 1);
+        var frontMaterial = new THREE.MeshBasicMaterial({color:0xF44336});
+        var frontFace = new THREE.Mesh(frontGeometry, frontMaterial);
+        frontFace.position.z = 0.5;
+        cube.add(frontFace);
+
+        //create back face
+        var backGeometry = new THREE.BoxGeometry(1, 1, 1);
+        var backMaterial = new THREE.MeshBasicMaterial({color:0x9C27B0});
+        var backFace = new THREE.Mesh(backGeometry, backMaterial);
+        backFace.position.z = -0.5;
+        cube.add(backFace);
+
+        //create right face
+        var rightGeometry = new THREE.BoxGeometry(1, 1, 1);
+        var rightMaterial = new THREE.MeshBasicMaterial({color:0x4CAF50});
+        var rightFace = new THREE.Mesh(rightGeometry, rightMaterial);
+        rightFace.position.x = 0.5;
+        rightFace.rotation.y = -Math.PI/2;
+        cube.add(rightFace);
+
+        //create left face
+        var leftGeometry = new THREE.BoxGeometry(1,1, 1);
+        var leftMaterial = new THREE.MeshBasicMaterial({color:0xFF9800});
+        var leftFace = new THREE.Mesh(leftGeometry, leftMaterial);
+        leftFace.position.x = -0.5;
+        leftFace.rotation.y = Math.PI/2;
+        cube.add(leftFace);
+            //create top face
+    var topGeometry = new THREE.BoxGeometry(1, 1, 1);
+    var topMaterial = new THREE.MeshBasicMaterial({color:0x2196F3});
+    var topFace = new THREE.Mesh(topGeometry, topMaterial);
+    topFace.position.y = 0.5;
+    topFace.rotation.x = -Math.PI/2;
+    cube.add(topFace);
+
+    //create bottom face
+    var bottomGeometry = new THREE.BoxGeometry(1, 1, 1);
+    var bottomMaterial = new THREE.MeshBasicMaterial({color:0x008CBA});
+    var bottomFace = new THREE.Mesh(bottomGeometry, bottomMaterial);
+    bottomFace.position.y = -0.5;
+    bottomFace.rotation.x = Math.PI/2;
+    cube.add(bottomFace);
+
+    camera.position.z = 5;
+
+    // Define render loop
+    var render = function () {
+      requestAnimationFrame(render);
+      cube.rotation.x += 0.01;
+      cube.rotation.y += 0.01;
+      renderer.render(scene, camera);
+    };
+
+    // Start the render loop
+    render();
+
+</script>
+</body>
 </html>
