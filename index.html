@@ -12,7 +12,8 @@
         left: 50%;
         margin-top: -100px;
         margin-left: -100px;
-        transform-style: preserve-3d;
+        perspective: 800px; /* Add perspective */
+        transform-style: preserve-3d; /* Enable 3D transforms */
         transform: rotateX(-20deg) rotateY(-45deg);
         animation: spin 10s linear infinite;
       }
@@ -24,6 +25,7 @@
         height: 100%;
         padding: 10px;
         box-sizing: border-box;
+        transform-style: preserve-3d; /* Enable 3D transforms */
       }
       
       /* Define the appearance of the cube's faces */
@@ -69,7 +71,7 @@
         background: #008CBA;
         transform: rotateX(-90deg) translateZ(100px);
       }
-
+      
       /*Animation*/
       @keyframes spin{
           from{
@@ -93,4 +95,3 @@
       </figure>
     </div>
   </body>
-</html>
