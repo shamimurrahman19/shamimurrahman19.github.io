@@ -1,29 +1,97 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <title>Mohammad Shamimur Rahman</title>
     <style>
-      /* Define the animation for the cube */
-      @keyframes spin {
-        0% { transform: rotateY(0deg); }
-        100% { transform: rotateY(360deg); }
+      /* Define the size and position of the cube */
+      .cube {
+        width: 200px;
+        height: 200px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        margin-top: -100px;
+        margin-left: -100px;
+        perspective: 800px; /* Add perspective */
+        transform-style: preserve-3d; /* Enable 3D transforms */
+        transform: rotateX(-20deg) rotateY(-45deg);
+        animation: spin 10s linear infinite;
       }
-
-      /* Apply the animation to the cube */
-      #cube {
-        animation: spin 8s linear infinite;
+      
+      /* Define the appearance of the cube */
+      .cube figure {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+        transform-style: preserve-3d; /* Enable 3D transforms */
+      }
+      
+      /* Define the appearance of the cube's faces */
+      .cube figure div {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        border: 1px solid #999;
+      }
+      
+      /* Define the color of the front face */
+      .cube .front {
+        background: #F44336;
+        transform: translateZ(100px);
+      }
+      
+      /* Define the color of the back face */
+      .cube .back {
+        background: #9C27B0;
+        transform: rotateY(180deg) translateZ(100px);
+      }
+      
+      /* Define the color of the right face */
+      .cube .right {
+        background: #4CAF50;
+        transform: rotateY(90deg) translateZ(100px);
+      }
+      
+      /* Define the color of the left face */
+      .cube .left {
+        background: #FF9800;
+        transform: rotateY(-90deg) translateZ(100px);
+      }
+      
+      /* Define the color of the top face */
+      .cube .top {
+        background: #2196F3;
+        transform: rotateX(90deg) translateZ(100px);
+      }
+      
+      /* Define the color of the bottom face */
+      .cube .bottom {
+        background: #008CBA;
+        transform: rotateX(-90deg) translateZ(100px);
+      }
+      
+      /*Animation*/
+      @keyframes spin{
+          from{
+              transform: rotateX(-20deg) rotateY(-45deg);
+          }
+          to{
+              transform: rotateX(-20deg) rotateY(315deg);
+          }
       }
     </style>
   </head>
   <body>
-    <svg viewBox="0 0 100 100">
-      <g id="cube">
-        <rect x="25" y="25" width="50" height="50" fill="red" />
-        <rect x="25" y="25" width="50" height="50" fill="blue" transform="rotateY(90)" />
-        <rect x="25" y="25" width="50" height="50" fill="green" transform="rotateX(90)" />
-        <rect x="25" y="25" width="50" height="50" fill="purple" transform="rotateY(180)" />
-        <rect x="25" y="25" width="50" height="50" fill="orange" transform="rotateY(-90)" />
-        <rect x="25" y="25" width="50" height="50" fill="black" transform="rotateX(-90)" />
-      </g>
-    </svg>
+    <div class="cube">
+      <figure>
+        <div class="front"></div>
+        <div class="back"></div>
+        <div class="right"></div>
+        <div class="left"></div>
+        <div class="top"></div>
+        <div class="bottom"></div>
+      </figure>
+    </div>
   </body>
-</html>
