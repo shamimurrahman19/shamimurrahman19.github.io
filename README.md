@@ -22,6 +22,7 @@
         height: 100%;
         padding: 10px;
         box-sizing: border-box;
+        border: 1px solid #999;
       }
       
       /* Define the appearance of the cube's faces */
