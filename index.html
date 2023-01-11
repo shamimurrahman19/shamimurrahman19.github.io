@@ -12,7 +12,9 @@
         left: 50%;
         margin-top: -100px;
         margin-left: -100px;
-        perspective: 800px;
+        transform-style: preserve-3d;
+        transform: rotateX(-20deg) rotateY(-45deg);
+        animation: spin 10s linear infinite;
       }
       
       /* Define the appearance of the cube */
@@ -62,6 +64,16 @@
       .cube .bottom {
         transform: rotateX(-90deg) translateZ(100px);
       }
+
+      /*Animation*/
+      @keyframes spin{
+          from{
+              transform: rotateX(-20deg) rotateY(-45deg);
+          }
+          to{
+              transform: rotateX(-20deg) rotateY(315deg);
+          }
+      }
     </style>
   </head>
   <body>
@@ -75,21 +87,5 @@
         <div class="bottom"></div>
       </figure>
     </div>
-    
-    <script>
-      // Get a reference to the cube element
-      var cube = document.querySelector(".cube");
-      
-      // Animate the cube's rotation
-      function animate() {
-        cube.style.transform = "rotateX(-20deg) rotateY(-45deg)";
-        setTimeout(function() {
-          cube.style.transform = "none";
-        }, 2000);
-      }
-      
-      animate();
-      setInterval(animate, 3000);
-    </script>
   </body>
 </html>
