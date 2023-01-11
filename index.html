@@ -31,8 +31,8 @@
       /* Define the appearance of the cube's faces */
       .cube figure div {
         position: absolute;
-        width: 100%;
-        height: 100%;
+        width: calc(100% - 20px); /* reduce the width by the total padding */
+        height: calc(100% - 20px); /* reduce the height by the total padding */
         border: 1px solid #999;
       }
       
@@ -95,3 +95,4 @@
       </figure>
     </div>
   </body>
+</html>
