@@ -26,13 +26,48 @@
         box-sizing: border-box;
       }
       
-      /* Define the appearance of the cube's faces */
+    /* Define the appearance of the cube's faces */
       .cube figure div {
         position: absolute;
         width: 100%;
         height: 100%;
-        background: #ccc;
         border: 1px solid #999;
+      }
+      
+      /* Define the color of the front face */
+      .cube .front {
+        background: #F44336;
+        transform: translateZ(100px);
+      }
+      
+      /* Define the color of the back face */
+      .cube .back {
+        background: #9C27B0;
+        transform: rotateY(180deg) translateZ(100px);
+      }
+      
+      /* Define the color of the right face */
+      .cube .right {
+        background: #4CAF50;
+        transform: rotateY(90deg) translateZ(100px);
+      }
+      
+      /* Define the color of the left face */
+      .cube .left {
+        background: #FF9800;
+        transform: rotateY(-90deg) translateZ(100px);
+      }
+      
+      /* Define the color of the top face */
+      .cube .top {
+        background: #2196F3;
+        transform: rotateX(90deg) translateZ(100px);
+      }
+      
+      /* Define the color of the bottom face */
+      .cube .bottom {
+        background: #008CBA;
+        transform: rotateX(-90deg) translateZ(100px);
       }
       
       /* Define the position of the front face */
