@@ -1,84 +1,259 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>3D Cube</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r120/three.min.js"></script>
-    <style>
-        body {
-            margin: 0;
-            overflow: hidden;
-        }
-    </style>
-  </head>
-  <body>
-    <script>
-        var scene = new THREE.Scene();
-        var camera = new THREE.PerspectiveCamera(75, window.innerWidth/window.innerHeight, 0.1, 1000);
-        var renderer = new THREE.WebGLRenderer();
-        renderer.setSize(window.innerWidth, window.innerHeight);
-        document.body.appendChild(renderer.domElement);
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Mohammad Shamimur Rahman</title>
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r120/three.min.js"></script>
+<style>
 
-        var cube = new THREE.Object3D();
-        scene.add(cube);
+body {
+margin: 0;
+overflow: hidden;
+color: white;
+background-color: black;
+}
 
-        //create front face
-        var frontGeometry = new THREE.BoxGeometry(1, 1, 1);
-        var frontMaterial = new THREE.MeshBasicMaterial({color:0xF44336});
-        var frontFace = new THREE.Mesh(frontGeometry, frontMaterial);
-        frontFace.position.z = 0.5;
-        cube.add(frontFace);
+.img_container {
+    position: relative;
+    overflow: hidden; /* hide the overflow */
+}
 
-        //create back face
-        var backGeometry = new THREE.BoxGeometry(1, 1, 1);
-        var backMaterial = new THREE.MeshBasicMaterial({color:0x9C27B0});
-        var backFace = new THREE.Mesh(backGeometry, backMaterial);
-        backFace.position.z = -0.5;
-        cube.add(backFace);
+.img_container img {
+    max-width: 50%;
+    max-height: 50%;
+    object-fit: contain;
+}
 
-        //create right face
-        var rightGeometry = new THREE.BoxGeometry(1, 1, 1);
-        var rightMaterial = new THREE.MeshBasicMaterial({color:0x4CAF50});
-        var rightFace = new THREE.Mesh(rightGeometry, rightMaterial);
-        rightFace.position.x = 0.5;
-        rightFace.rotation.y = -Math.PI/2;
-        cube.add(rightFace);
+hr {
+height: 1px;
+background-color: rgb(54, 54, 54);
+border: none;
+}
 
-        //create left face
-        var leftGeometry = new THREE.BoxGeometry(1,1, 1);
-        var leftMaterial = new THREE.MeshBasicMaterial({color:0xFF9800});
-        var leftFace = new THREE.Mesh(leftGeometry, leftMaterial);
-        leftFace.position.x = -0.5;
-        leftFace.rotation.y = Math.PI/2;
-        cube.add(leftFace);
-            //create top face
-    var topGeometry = new THREE.BoxGeometry(1, 1, 1);
-    var topMaterial = new THREE.MeshBasicMaterial({color:0x2196F3});
-    var topFace = new THREE.Mesh(topGeometry, topMaterial);
-    topFace.position.y = 0.5;
-    topFace.rotation.x = -Math.PI/2;
-    cube.add(topFace);
+</style>
+</head>
+<body>
 
-    //create bottom face
-    var bottomGeometry = new THREE.BoxGeometry(1, 1, 1);
-    var bottomMaterial = new THREE.MeshBasicMaterial({color:0x008CBA});
-    var bottomFace = new THREE.Mesh(bottomGeometry, bottomMaterial);
-    bottomFace.position.y = -0.5;
-    bottomFace.rotation.x = Math.PI/2;
-    cube.add(bottomFace);
+<div style="height: 100vh; overflow-y: scroll;">
+<div class="container">
 
-    camera.position.z = 5;
+    <div class="row" style="display: flex; align-items: center; justify-content: center; text-align: center;">
 
-    // Define render loop
-    var render = function () {
-      requestAnimationFrame(render);
-      cube.rotation.x += 0.01;
-      cube.rotation.y += 0.01;
-      renderer.render(scene, camera);
-    };
+        <div class="col-12 col-sm-5 order-1">
+            <div class="img_container">
+                <img src="profile_pic_b&w.jpg" alt="your gif">
+            </div>
+        </div>
 
-    // Start the render loop
-    render();
+        <div class="col-12 col-sm-7 order-2" style="text-align: left;">
+            <div class="details">
+                <div>
+                    <br>
+                    <h1 style="color: rgb(207, 159, 0);">Mohammad Shamimur Rahman</h1>
+                    <h3>Full-Stack Software & Web Development</h3>
+                    <h6>[Bachelors in Computer Science & Engineering]</h6>
+                    <h3>2D & 3D Motion Graphics Design</h3>
+                    <h6>[Diploma in Architectural & Interior Designing]</h6>
+                    <h3>Research Works</h3>
+                    <h6>Present Affliations: Khwaja Yunus Ali University</h6>
+                    <h6>Past Affliations: Time Research & Innovations, Thankuragon Polytechnical Institute</h6>
+                    <h4>Email: shamimurrahman19@gmail.com</h4>
+                    <br>
+                </div>
+            </div>
+        </div>
 
-</script>
+        <div class="col-12 col-sm-6 order-3">
+            <div id="fidget"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    var scene = new THREE.Scene();
+    var container = document.getElementById("fidget");
+    var camera = new THREE.PerspectiveCamera(75, container.clientWidth / container.clientHeight, .01, 1000);
+    var renderer = new THREE.WebGLRenderer();
+    renderer.setSize(container.clientWidth, container.clientHeight);
+    container.appendChild(renderer.domElement);
+
+    var cube = new THREE.Object3D();
+    scene.add(cube);
+
+    //create front face
+    var frontGeometry = new THREE.BoxGeometry(1, 1, 1);
+    var frontMaterial = new THREE.MeshBasicMaterial({color:0xF44336});
+    var frontFace = new THREE.Mesh(frontGeometry, frontMaterial);
+    frontFace.position.z = 0.5;
+    cube.add(frontFace);
+
+    //create front text
+                    var fontLoader = new THREE.FontLoader();
+                    fontLoader.load('https://cdn.jsdelivr.net/npm/three@0.117.1/examples/fonts/helvetiker_bold.typeface.json', function (font) {
+                    var frontTextGeometry = new THREE.TextGeometry("JAVA", {
+                    font: font,
+                    size: 0.2,
+                    height: 0.01
+                    });
+                    var frontTextMaterial = new THREE.MeshBasicMaterial({color: 0xffffff});
+                    var frontTextMesh = new THREE.Mesh(frontTextGeometry, frontTextMaterial);
+                    frontTextMesh.position.z = 1.001;
+                    frontTextMesh.position.y = -0.1;
+                    frontTextMesh.position.x = -0.35;
+                    cube.add(frontTextMesh);
+                    });
+                    
+                    //create back face
+                    var backGeometry = new THREE.BoxGeometry(1, 1, 1);
+                    var backMaterial = new THREE.MeshBasicMaterial({color:0x9C27B0});
+                    var backFace = new THREE.Mesh(backGeometry, backMaterial);
+                    backFace.position.z = -0.5;
+                    cube.add(backFace);
+                    
+                    //create back text
+                    var fontLoader = new THREE.FontLoader();
+                    fontLoader.load('https://cdn.jsdelivr.net/npm/three@0.117.1/examples/fonts/helvetiker_bold.typeface.json', function (font) {
+                    var backTextGeometry = new THREE.TextGeometry("Python", {
+                    font: font,
+                    size: 0.2,
+                    height: 0.01
+                    });
+                    var backTextMaterial = new THREE.MeshBasicMaterial({color: 0xffffff});
+                    var backTextMesh = new THREE.Mesh(backTextGeometry, backTextMaterial);
+                    backTextMesh.position.z = .505;
+                    backTextMesh.position.y = -.45;
+                    backTextMesh.position.x = .9;
+                    backTextMesh.rotation.z = Math.PI/2;
+                    cube.add(backTextMesh);
+                    });
+                    
+                    //create right face
+                    var rightGeometry = new THREE.BoxGeometry(1, 1, 1);
+                    var rightMaterial = new THREE.MeshBasicMaterial({color:0x4CAF50});
+                    var rightFace = new THREE.Mesh(rightGeometry, rightMaterial);
+                    rightFace.position.x = 0.5;
+                    rightFace.rotation.y = -Math.PI/2;
+                    cube.add(rightFace);
+                    
+                    //create right text
+                    var fontLoader = new THREE.FontLoader();
+                    fontLoader.load('https://cdn.jsdelivr.net/npm/three@0.117.1/examples/fonts/helvetiker_bold.typeface.json', function (font) {
+                    var rightTextGeometry = new THREE.TextGeometry("C++", {
+                    font: font,
+                    size: 0.2,
+                    height: 0.01
+                    });
+                    var rightTextMaterial = new THREE.MeshBasicMaterial({color: 0xffffff});
+                    var rightTextMesh = new THREE.Mesh(rightTextGeometry, rightTextMaterial);
+                    rightTextMesh.position.z = -.1;
+                    rightTextMesh.position.y = 1.001;
+                    rightTextMesh.position.x = -.3;
+                    rightTextMesh.rotation.x = Math.PI/2;
+                    cube.add(rightTextMesh);
+                    });
+                    
+                    //create left face
+                    var leftGeometry = new THREE.BoxGeometry(1,1, 1);
+                    var leftMaterial = new THREE.MeshBasicMaterial({color:0xFF9800});
+                    var leftFace = new THREE.Mesh(leftGeometry, leftMaterial);
+                    leftFace.position.x = -0.5;
+                    leftFace.rotation.y = Math.PI/2;
+                    cube.add(leftFace);
+                    
+                    //create left text
+                    var fontLoader = new THREE.FontLoader();
+                    fontLoader.load('https://cdn.jsdelivr.net/npm/three@0.117.1/examples/fonts/helvetiker_bold.typeface.json', function (font) {
+                    var leftTextGeometry = new THREE.TextGeometry("C#", {
+                    font: font,
+                    size: 0.2,
+                    height: 0.01
+                    });
+                    var leftTextMaterial = new THREE.MeshBasicMaterial({color: 0xffffff});
+                    var leftTextMesh = new THREE.Mesh(leftTextGeometry, leftTextMaterial);
+                    leftTextMesh.position.z = -.1;
+                    leftTextMesh.position.y = -1.001;
+                    leftTextMesh.position.x = -.2;
+                    leftTextMesh.rotation.x = Math.PI/2;
+                    cube.add(leftTextMesh);
+                    });
+                    
+                    //create top face
+                    var topGeometry = new THREE.BoxGeometry(1, 1, 1);
+                    var topMaterial = new THREE.MeshBasicMaterial({color:0x2196F3});
+                    var topFace = new THREE.Mesh(topGeometry, topMaterial);
+                    topFace.position.y = 0.5;
+                    topFace.rotation.x = -Math.PI/2;
+                    cube.add(topFace);
+                    
+                    //create top text
+                    var fontLoader = new THREE.FontLoader();
+                    fontLoader.load('https://cdn.jsdelivr.net/npm/three@0.117.1/examples/fonts/helvetiker_bold.typeface.json', function (font) {
+                    var topTextGeometry = new THREE.TextGeometry(".NET", {
+                    font: font,
+                    size: 0.2,
+                    height: 0.01
+                    });
+                    var topTextMaterial = new THREE.MeshBasicMaterial({color: 0xffffff});
+                    var topTextMesh = new THREE.Mesh(topTextGeometry, topTextMaterial);
+                    topTextMesh.position.z = 0.25;
+                    topTextMesh.position.y = -.505;
+                    topTextMesh.position.x = -.85;
+                    topTextMesh.rotation.z = -Math.PI/2;
+                    topTextMesh.rotation.x = Math.PI/2;
+                    cube.add(topTextMesh);
+                    });
+                    
+                    //create bottom face
+                    var bottomGeometry = new THREE.BoxGeometry(1, 1, 1);
+                    var bottomMaterial = new THREE.MeshBasicMaterial({color:0x008CBA});
+                    var bottomFace = new THREE.Mesh(bottomGeometry, bottomMaterial);
+                    bottomFace.position.y = -0.5;
+                    bottomFace.rotation.x = Math.PI/2;
+                    cube.add(bottomFace);
+                    
+                    //create bottom text
+                    var fontLoader = new THREE.FontLoader();
+                    fontLoader.load('https://cdn.jsdelivr.net/npm/three@0.117.1/examples/fonts/helvetiker_bold.typeface.json', function (font) {
+                    var bottomTextGeometry = new THREE.TextGeometry("HTML", {
+                    font: font,
+                    size: 0.2,
+                    height: 0.01
+                    });
+                    var bottomTextMaterial = new THREE.MeshBasicMaterial({color: 0xffffff});
+                    var bottomTextMesh = new THREE.Mesh(bottomTextGeometry, bottomTextMaterial);
+                    bottomTextMesh.position.z = -0.35;
+                    bottomTextMesh.position.y = .505;
+                    bottomTextMesh.position.x = -.85;
+                    bottomTextMesh.rotation.x = -Math.PI/2;
+                    bottomTextMesh.rotation.z = -Math.PI/2;
+                    cube.add(bottomTextMesh);
+                    });
+                    
+                    camera.position.z = 2;
+                    renderer.setClearColor(0x000000, 1);
+                    
+                    renderer.setSize(200, 200);
+                    camera.aspect = 200 / 200;
+                    camera.updateProjectionMatrix();
+                    
+                    // Define render loop
+                    var render = function () {
+                    requestAnimationFrame(render);
+                    cube.rotation.x += 0.01;
+                    cube.rotation.y += 0.01;
+                    renderer.render(scene, camera);
+                    };
+                    
+                    // Start the render loop
+                    render();
+                    </script>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 </body>
 </html>
